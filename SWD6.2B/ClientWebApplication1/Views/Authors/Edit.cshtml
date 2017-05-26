@@ -1,0 +1,73 @@
+﻿@model Common.author
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Edit Author</title>
+</head>
+<body>
+   
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>User</legend>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.first_name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.first_name)
+                    @Html.ValidationMessageFor(model => model.first_name)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.last_name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.last_name)
+                    @Html.ValidationMessageFor(model => model.last_name)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.profile)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.profile)
+                    @Html.ValidationMessageFor(model => model.profile)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.email)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.email)
+                    @Html.ValidationMessageFor(model => model.email)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.password)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.password)
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+                <p>
+                    <input type="submit" value="Edit" />
+                </p>
+                @if (ViewBag.Message != null)
+                {
+                    @ViewBag.Message
+                }
+</fieldset>
+    }
+</body>
+</html>

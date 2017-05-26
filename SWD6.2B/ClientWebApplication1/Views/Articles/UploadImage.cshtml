@@ -1,0 +1,17 @@
+﻿
+@model Common.article
+
+<form method="post" action="/Articles/UploadImage" enctype="multipart/form-data">
+    
+
+    Choose Image file:
+    <input type="file" name="file" />
+    <input type="submit" value="Submit" />
+</form>
+
+
+@if (ViewBag.Message != null)
+            {
+    @ViewBag.Message
+}&
+

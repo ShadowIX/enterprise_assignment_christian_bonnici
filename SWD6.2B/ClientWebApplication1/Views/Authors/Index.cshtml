@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Common.author>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.authorID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.first_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.last_name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.profile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.authorID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.profile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.ActionLink("Info", "Info", new { authorid = item.authorID }) |
+                    @Html.ActionLink("Edit", "Edit", new { authorid = item.authorID }) |
+                    @Html.ActionLink("Delete", "Delete", new { authorid = item.authorID },
+                new { onclick = "return window.confirm('Are you sure?')" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Create Account", "Register")
+    <div>
+        @if (TempData["Message"] != null)
+        {
+            <label>@TempData["Message"]</label>
+        }
+    </div>
+</body>
+</html>
+
+
+

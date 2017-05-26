@@ -1,0 +1,56 @@
+﻿@model Common.author
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>Details</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.first_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.first_name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.last_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.last_name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.profile)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.profile)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.password)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+</body>
+</html> 

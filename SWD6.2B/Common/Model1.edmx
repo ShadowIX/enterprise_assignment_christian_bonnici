@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EntProgDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="article">
+          <Key>
+            <PropertyRef Name="articleID" />
+          </Key>
+          <Property Name="articleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="article_name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="article_sub_heading" Type="nvarchar" MaxLength="256" />
+          <Property Name="isfeatured" Type="bit" />
+          <Property Name="isBreaking" Type="bit" />
+          <Property Name="category" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="content" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="authorID" Type="int" />
+          <Property Name="imageUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="authorID" />
+          </Key>
+          <Property Name="authorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="profile" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__article__authorI__5DCAEF64">
+          <End Role="author" Type="Self.author" Multiplicity="0..1" />
+          <End Role="article" Type="Self.article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="authorID" />
+            </Principal>
+            <Dependent Role="article">
+              <PropertyRef Name="authorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntProgDBModelStoreContainer">
+          <EntitySet Name="article" EntityType="Self.article" Schema="a01" store:Type="Tables" />
+          <EntitySet Name="author" EntityType="Self.author" Schema="a01" store:Type="Tables" />
+          <AssociationSet Name="FK__article__authorI__5DCAEF64" Association="Self.FK__article__authorI__5DCAEF64">
+            <End Role="author" EntitySet="author" />
+            <End Role="article" EntitySet="article" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EntProgDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="article">
+          <Key>
+            <PropertyRef Name="articleID" />
+          </Key>
+          <Property Name="articleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="article_name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="article_sub_heading" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="isfeatured" Type="Boolean" />
+          <Property Name="isBreaking" Type="Boolean" />
+          <Property Name="category" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="authorID" Type="Int32" />
+          <Property Name="imageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="author" Relationship="Self.FK__article__authorI__4CA06362" FromRole="article" ToRole="author" />
+        </EntityType>
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="authorID" />
+          </Key>
+          <Property Name="authorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="profile" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="articles" Relationship="Self.FK__article__authorI__4CA06362" FromRole="author" ToRole="article" />
+        </EntityType>
+        <Association Name="FK__article__authorI__4CA06362">
+          <End Role="author" Type="Self.author" Multiplicity="0..1" />
+          <End Role="article" Type="Self.article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="authorID" />
+            </Principal>
+            <Dependent Role="article">
+              <PropertyRef Name="authorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EnterpriseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="articles" EntityType="Self.article" />
+          <EntitySet Name="authors" EntityType="Self.author" />
+          <AssociationSet Name="FK__article__authorI__4CA06362" Association="Self.FK__article__authorI__4CA06362">
+            <End Role="author" EntitySet="authors" />
+            <End Role="article" EntitySet="articles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntProgDBModelStoreContainer" CdmEntityContainer="EnterpriseEntities">
+          <EntitySetMapping Name="articles">
+            <EntityTypeMapping TypeName="EntProgDBModel.article">
+              <MappingFragment StoreEntitySet="article">
+                <ScalarProperty Name="articleID" ColumnName="articleID" />
+                <ScalarProperty Name="article_name" ColumnName="article_name" />
+                <ScalarProperty Name="article_sub_heading" ColumnName="article_sub_heading" />
+                <ScalarProperty Name="isfeatured" ColumnName="isfeatured" />
+                <ScalarProperty Name="isBreaking" ColumnName="isBreaking" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="authorID" ColumnName="authorID" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="authors">
+            <EntityTypeMapping TypeName="EntProgDBModel.author">
+              <MappingFragment StoreEntitySet="author">
+                <ScalarProperty Name="authorID" ColumnName="authorID" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="profile" ColumnName="profile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

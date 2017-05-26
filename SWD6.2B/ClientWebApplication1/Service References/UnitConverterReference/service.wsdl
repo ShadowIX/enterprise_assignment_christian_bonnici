@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UnitConverter" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUnitConverter_ConvertCmToM_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertCmToM" />
+  </wsdl:message>
+  <wsdl:message name="IUnitConverter_ConvertCmToM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertCmToMResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUnitConverter_ConvertMMToM_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertMMToM" />
+  </wsdl:message>
+  <wsdl:message name="IUnitConverter_ConvertMMToM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertMMToMResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUnitConverter_ConvertDegreesToFahrenheit_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertDegreesToFahrenheit" />
+  </wsdl:message>
+  <wsdl:message name="IUnitConverter_ConvertDegreesToFahrenheit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertDegreesToFahrenheitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUnitConverter_ConvertClToL_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertClToL" />
+  </wsdl:message>
+  <wsdl:message name="IUnitConverter_ConvertClToL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertClToLResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IUnitConverter">
+    <wsdl:operation name="ConvertCmToM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUnitConverter/ConvertCmToM" message="tns:IUnitConverter_ConvertCmToM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUnitConverter/ConvertCmToMResponse" message="tns:IUnitConverter_ConvertCmToM_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertMMToM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUnitConverter/ConvertMMToM" message="tns:IUnitConverter_ConvertMMToM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUnitConverter/ConvertMMToMResponse" message="tns:IUnitConverter_ConvertMMToM_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDegreesToFahrenheit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUnitConverter/ConvertDegreesToFahrenheit" message="tns:IUnitConverter_ConvertDegreesToFahrenheit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUnitConverter/ConvertDegreesToFahrenheitResponse" message="tns:IUnitConverter_ConvertDegreesToFahrenheit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertClToL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUnitConverter/ConvertClToL" message="tns:IUnitConverter_ConvertClToL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUnitConverter/ConvertClToLResponse" message="tns:IUnitConverter_ConvertClToL_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IUnitConverter" type="tns:IUnitConverter">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConvertCmToM">
+      <soap:operation soapAction="http://tempuri.org/IUnitConverter/ConvertCmToM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertMMToM">
+      <soap:operation soapAction="http://tempuri.org/IUnitConverter/ConvertMMToM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDegreesToFahrenheit">
+      <soap:operation soapAction="http://tempuri.org/IUnitConverter/ConvertDegreesToFahrenheit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertClToL">
+      <soap:operation soapAction="http://tempuri.org/IUnitConverter/ConvertClToL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UnitConverter">
+    <wsdl:port name="BasicHttpBinding_IUnitConverter" binding="tns:BasicHttpBinding_IUnitConverter">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/UnitConverter/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

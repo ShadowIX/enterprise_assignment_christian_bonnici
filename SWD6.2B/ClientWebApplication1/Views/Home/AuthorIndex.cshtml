@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Common.article>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <container>
+@{
+    int counter = Model.Count() / 5;
+    System.Collections.ArrayList userList = new System.Collections.ArrayList();
+    System.Collections.ArrayList emailList = new System.Collections.ArrayList();
+
+    foreach (var item2 in Model)
+    {
+        if (!userList.Contains(Convert.ToInt32(item2.authorID)))
+        {
+            userList.Add(item2.authorID);
+            DataAccess.AuthorsRepository auth = new DataAccess.AuthorsRepository();
+            Common.author  au =  auth.GetAuthorbyID(Convert.ToInt32(item2.authorID));
+            emailList.Add(au.email);
+        }
+    }
+
+
+    int current = 0;
+
+    for (int i = 0; i < counter; i++)
+    {
+        var name = emailList[i].ToString();
+        <div class="col-md-4">
+        <h1> @name</h1>
+        @for (int ii = 0; ii < 5; ii++)
+        {
+            if (Model.ElementAt(current).article_name != null)
+            {
+                 @Html.DisplayFor(modelItem => Model.ElementAt(current).article_name);
+                <br />
+            }
+            current++;
+        }
+        </div>
+    }
+}
+</body>
+</html>
+
+

@@ -1,0 +1,58 @@
+﻿@model ClientWebApplication1.Models.CurrencyModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <form method="post" action="\Home\Index">
+            <table>
+                <tr>
+                    <td>
+                        Select Currency From
+                    </td>
+                    <td>
+                        <select name="ddlFrom">
+                            @foreach (var item in Model.Currencies)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Select Currency To
+                    </td>
+                    <td>
+                        <select name="ddlTo">
+                            @foreach (var item in Model.Currencies)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                <td>Input value</td>
+                    <td><input type="number" name="v" /></td>
+                </tr>
+            </table>
+            <input type="submit" value="submit" />
+
+        </form>
+      <label>Converted Value is @Model.ConvertedValue</label>
+
+    </div>
+</body>
+</html>

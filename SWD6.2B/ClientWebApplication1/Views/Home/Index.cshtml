@@ -1,0 +1,238 @@
+﻿@model IEnumerable<Common.article>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+        <div class="col-md-4">
+            <h1>Sports </h1>
+            @{
+                bool check = false; //
+                int limit = 5;
+                int counter = 0;
+                List<Common.article> SportsArticles = new List<Common.article>();
+                foreach (var item in Model)
+                {
+                    if (item.category.ToLower() == "sports")
+                    {
+                        SportsArticles.Add(item);
+                    }
+                }
+                counter = SportsArticles.Count();
+
+
+                while (counter != 0 && limit != 0)
+                {
+                    Common.article current = SportsArticles.Last();
+                    if (check == false)
+                    {
+                        <img src=@current.imageUrl width="200" height="200" alt="IMAGES" />
+                         <br />
+                        check = true;
+                    }
+                    <a href='@Url.Action("Details", "Home", new { articleID = current.articleID })'>
+                        @Html.DisplayFor(modelItem => current.article_name)
+                    </a>
+                    SportsArticles.RemoveAt(counter - 1);
+                    limit--;
+                    counter--;
+                        <br />
+                }
+                        }
+
+</div>
+
+
+        <div class="col-md-4">
+            <h1>National </h1>
+            @{
+                check = false;
+                limit = 5;
+                counter = 0;
+                SportsArticles = new List<Common.article>();
+                foreach (var item in Model)
+                {
+                    if (item.category.ToLower() == "national")
+                    {
+                        SportsArticles.Add(item);
+                    }
+                }
+                counter = SportsArticles.Count();
+
+
+                while (counter != 0 && limit != 0)
+                {
+                    Common.article current = SportsArticles.Last();
+                    if (check == false)
+                    {
+                        <img src=@current.imageUrl width="200" height="200" alt="IMAGES" />
+                        <br />
+                        check = true;
+                    }
+                    <a href='@Url.Action("Details", "Home", new { articleID = current.articleID })'>
+                        @Html.DisplayFor(modelItem => current.article_name)
+                    </a>
+                    SportsArticles.RemoveAt(counter - 1);
+                    limit--;
+                    counter--;
+                    <br />
+                }
+            }
+        </div>
+
+        <div class="col-md-4">
+            <h1>Overseas </h1>
+          @{
+              check = false;
+              limit = 5;
+              counter = 0;
+              SportsArticles = new List<Common.article>();
+              foreach (var item in Model)
+              {
+                  if (item.category.ToLower() == "overseas")
+                  {
+                      SportsArticles.Add(item);
+                  }
+              }
+              counter = SportsArticles.Count();
+
+
+              while (counter != 0 && limit != 0)
+              {
+                  Common.article current = SportsArticles.Last();
+                  if (check == false)
+                  {
+                    <img src=@current.imageUrl width="200" height="200" alt="IMAGES" />
+
+                    <br />
+                      check = true;
+                  }
+                <a href='@Url.Action("Details", "Home", new { articleID = current.articleID })'>
+                    @Html.DisplayFor(modelItem => current.article_name)
+                </a>
+                  SportsArticles.RemoveAt(counter - 1);
+                  limit--;
+                  counter--;
+                <br />
+              }
+        }
+        </div>
+
+
+        <div class="col-md-4">
+            <h1>Opinion </h1>
+           @{
+               check = false;
+               limit = 5;
+               counter = 0;
+               SportsArticles = new List<Common.article>();
+               foreach (var item in Model)
+               {
+                   if (item.category.ToLower() == "opinion")
+                   {
+                       SportsArticles.Add(item);
+                   }
+               }
+               counter = SportsArticles.Count();
+
+
+               while (counter != 0 && limit != 0)
+               {
+                   Common.article current = SportsArticles.Last();
+                   if (check == false)
+                   {
+                    <img src=@current.imageUrl width="200" height="200" alt="IMAGES" />
+                    <br />
+                       check = true;
+                   }
+                <a href='@Url.Action("Details", "Home", new { articleID = current.articleID })'>
+                    @Html.DisplayFor(modelItem => current.article_name)
+                </a>
+                   SportsArticles.RemoveAt(counter - 1);
+                   limit--;
+                   counter--;
+                <br />
+               }
+        }
+        </div>
+
+        <div class="col-md-4">
+            <h1>Travel </h1>
+           @{
+               check = false;
+               limit = 5;
+               counter = 0;
+               SportsArticles = new List<Common.article>();
+               foreach (var item in Model)
+               {
+                   if (item.category.ToLower() == "travel")
+                   {
+                       SportsArticles.Add(item);
+                   }
+               }
+               counter = SportsArticles.Count();
+
+
+               while (counter != 0 && limit != 0)
+               {
+                   Common.article current = SportsArticles.Last();
+                   if (check == false)
+                   {
+                    <img src=@current.imageUrl width="200" height="200" alt="IMAGES" />
+                    <br />
+                       check = true;
+                   }
+                <a href='@Url.Action("Details", "Home", new { articleID = current.articleID })'>
+                    @Html.DisplayFor(modelItem => current.article_name)
+                </a>
+                   SportsArticles.RemoveAt(counter - 1);
+                   limit--;
+                   counter--;
+                <br />
+               }
+        }
+        </div>
+
+        <div class="col-md-4">
+        <h1>Odd </h1>
+       @{
+           check = false;
+           limit = 5;
+           counter = 0;
+           SportsArticles = new List<Common.article>();
+           foreach (var item in Model)
+           {
+               if (item.category.ToLower() == "odd")
+               {
+                   SportsArticles.Add(item);
+               }
+           }
+           counter = SportsArticles.Count();
+
+
+           while (counter != 0 && limit != 0)
+           {
+               Common.article current = SportsArticles.Last();
+               if (check == false)
+               {
+                <img src=@current.imageUrl width="200" height="200" alt="IMAGES" />
+                <br />
+                   check = true;
+               }
+            <a href='@Url.Action("Details", "Home", new { articleID = current.articleID })'>
+                @Html.DisplayFor(modelItem => current.article_name)
+            </a>
+               SportsArticles.RemoveAt(counter - 1);
+               limit--;
+               counter--;
+            <br />
+               }
+           }
+
+         </div>
+</body>
+</html>

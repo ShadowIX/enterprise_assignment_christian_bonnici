@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Common.article>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: lightyellow;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="dropdown">
+            <img width="50" height="50" src="https://pmcdeadline2.files.wordpress.com/2016/07/logo-tv-logo.png" />
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                Filter your Search!
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=sports">Sports</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=National">National</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Overseas">Overseas</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Opinion">Opinion</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Travel">Travel</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Odd">Odd</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/AuthorIndex">Search By Author</a></li>
+            </ul>
+        </div>
+    </header>
+    <div>
+        <container background-color:blue>
+            <section>
+
+                <h3 style="background-color:red">
+                    BREAKING NEWS
+                    <br />
+                    @{
+                        var count = Model.Count();
+                        Common.article LatestNews = new Common.article();
+                        foreach (Common.article art in Model)
+                        {
+                            if (art.isBreaking == true)
+                            {
+                                LatestNews = new Common.article();
+                                LatestNews = art;
+
+
+                                if (LatestNews.category != null)
+                                {
+                                    var sub_head = LatestNews.article_sub_heading;
+                                    <a href='@Url.Action("Details", "Home", new { articleID = LatestNews.articleID })'>
+                                        @Html.DisplayFor(modelItem => LatestNews.article_sub_heading)
+                                    </a>
+                                    <br />
+                                }
+                            }
+                        }
+                        //@Html.DisplayFor(modelItem => LatestNews.article_sub_heading)
+                    }
+                </h3>
+            </section>
+            @RenderBody()
+    </div>
+
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>

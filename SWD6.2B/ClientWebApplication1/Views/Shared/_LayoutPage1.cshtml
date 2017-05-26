@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" /> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+   <!-- <script src="~/Scripts/slider.js"></script> -->
+    <script src="~/Scripts/slider.css"></script>
+</head>
+<body>
+
+    <header>
+        <div class="dropdown">
+            <img width="50" height="50" src="https://pmcdeadline2.files.wordpress.com/2016/07/logo-tv-logo.png" />
+
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                Filter your Search!
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=sports">Sports</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=National">National</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Overseas">Overseas</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Opinion">Opinion</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Travel">Travel</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Category?category=Odd">Odd</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/AuthorIndex">Search By Author</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Authors/register">Register User</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Articles/AddArticle">Create Article</a></li>
+            </ul>
+
+        </div>
+    </header>
+    <div>
+        <container background-color:blue>
+            <section>
+              
+                @* Getting Latest Featured Articles *@
+                @{
+                    DataAccess.ArticlesRepository ar = new DataAccess.ArticlesRepository();
+                    IQueryable<Common.article> query = ar.getFeaturedArticles();
+                    List<Common.article> myArticles = query.ToList();
+                    List<Common.article> newList = new List<Common.article>();
+
+                    while (myArticles.Count() >= 6)
+                    {
+                        myArticles.RemoveAt(0);
+                    }
+
+
+                    /*
+                    if (myArticles.Count() != 0)
+                    {
+                        <h2>Featured Right Now</h2>
+                        foreach (Common.article item in myArticles)
+                        {
+
+                        <a href='@Url.Action("Details", "Home", new { articleID = item.articleID })'>
+                            <p class="myHeading" href="google.com">
+                                @Html.DisplayFor(modelItem => item.article_name)
+                            </p>
+                            <img class="mySlides" src="@Url.Content("~" + @Html.DisplayFor(modelItem => item.imageUrl))" width="200" height="200" alt="IMAGES" />
+                        </a>
+
+                        }
+                    }
+                    */
+
+                    <script>
+                        var myIndex = 0;
+                        carousel();
+                        function carousel() {
+                            var i;
+                            var a = document.getElementsByClassName("myHeading");
+                            var x = document.getElementsByClassName("mySlides");
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = "none";
+                                a[i].style.display = "none";
+                            }
+                            myIndex++;
+                            if (myIndex > x.length) {myIndex = 1}    
+                            x[myIndex - 1].style.display = "block";
+                            a[myIndex - 1].style.display = "block";
+
+                            setTimeout(carousel, 2000); // Change image every 2 seconds
+                        }
+                    </script>
+                }
+                <br/>
+            @RenderBody()
+         </section>
+</div> 
+    @RenderSection("scripts", false)
+</body>
+</html>

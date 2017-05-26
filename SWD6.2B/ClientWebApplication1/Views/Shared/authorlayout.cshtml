@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Common.article>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="dropdown">
+            <img width="50" height="50" src="https://pmcdeadline2.files.wordpress.com/2016/07/logo-tv-logo.png" />
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                Filter your Search!
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                @{
+                    DataAccess.AuthorsRepository auth = new DataAccess.AuthorsRepository();
+                    IQueryable<Common.author> myAuthors = auth.GetAuthors();
+
+                    foreach (Common.author current in myAuthors)
+                    {
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/Author?email=@current.email"> @current.email</a></li>
+                    }
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Home/">Back to Home</a></li>
+                }
+            </ul>
+
+        </div>
+    </header>
+    <div>
+        <container background-color:blue>
+            @RenderBody()
+</div>
+
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@{
+    if (ViewContext.Controller.ViewBag.Value != null)
+    {
+        if (ViewContext.Controller.ViewBag.Value == "sports")
+        {
+            Layout = "~/Views/Shared/sports.cshtml";
+        }
+
+        if (ViewContext.Controller.ViewBag.Value == "national")
+        {
+            Layout = "~/Views/Shared/national.cshtml";
+        }
+
+        if (ViewContext.Controller.ViewBag.Value == "overseas")
+        {
+            Layout = "~/Views/Shared/overseas.cshtml";
+        }
+
+        if (ViewContext.Controller.ViewBag.Value == "opinion")
+        {
+            Layout = "~/Views/Shared/opinion.cshtml";
+        }
+
+        if (ViewContext.Controller.ViewBag.Value == "travel")
+        {
+            Layout = "~/Views/Shared/travel.cshtml";
+        }
+
+        if (ViewContext.Controller.ViewBag.Value == "odd")
+        {
+            Layout = "~/Views/Shared/odd.cshtml";
+        }
+
+        else if (ViewContext.Controller.ViewBag.Value == "authorIndex")
+        {
+            Layout = "~/Views/Shared/authorlayout.cshtml";
+        }
+
+        else if (ViewContext.Controller.ViewBag.Value == "login")
+        {
+            Layout = "~/Views/Shared/login.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    }
+}

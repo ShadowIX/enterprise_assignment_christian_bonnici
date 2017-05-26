@@ -1,0 +1,27 @@
+﻿
+
+<div>
+    @if (HttpContext.Current.User.Identity.IsAuthenticated == false)
+    {
+        <form method="post" action="/Accounts/Login">
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" name="email" /></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" /></td>
+                </tr>
+            </table>
+
+            <input type="submit" value="log in" />
+        </form>
+    }
+
+
+    @if (ViewBag.Message != null)
+    {
+        @ViewBag.Message
+    }
+</div>
